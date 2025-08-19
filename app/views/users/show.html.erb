@@ -1,0 +1,32 @@
+<div class="row">
+<div class="col-6" style="margin: 0 auto; text-align:center">
+
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar, class: "avatar" %>
+<% end %>
+
+<% if current_user.following?(@user) %>
+  <%= button_to "Unfollow", unfollow_path(@user) %>
+<% elsif current_user.sent_follow_request_to?(@user)  %>
+  <%= button_to "Cancel follow request", cancel_path(@user) %>
+<% else %>
+  <%= button_to "Follow", follow_path(@user) %>
+<% end %>
+
+<p>
+<%= @user.username %>
+
+</p>
+<p>
+<%= @user.email %>
+
+</p>
+<p>
+<%= @user.bio %>
+
+</p>
+
+
+
+</div>
+</div>
